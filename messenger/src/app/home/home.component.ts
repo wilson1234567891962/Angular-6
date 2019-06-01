@@ -7,14 +7,16 @@ import {User} from '../interfaces/user';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  friends: User[];
 
   constructor() {
-    let user: User = {
-      nick: '',
-      subnick: '',
+    const user: User = {
+      nick: 'Prueba de concepto',
+      subnick: 'Alfa y beta',
       age: 12
     };
 
+    this.friends = [user];
     console.log(user);
   }
 
