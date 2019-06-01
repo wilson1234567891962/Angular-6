@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../interfaces/user';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,8 @@ import {User} from '../interfaces/user';
 export class HomeComponent implements OnInit {
   friends: User[];
 
-  constructor() {
-    const user: User = {
-      nick: 'Prueba de concepto',
-      subnick: 'Alfa y beta',
-      age: 12,
-      friend: false,
-    };
-
-    this.friends = [user];
-    console.log(user);
+  constructor(private userService: UserService) {
+    this.friends = userService.getFriends();
   }
 
   ngOnInit() {
