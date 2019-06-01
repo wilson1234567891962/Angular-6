@@ -12,6 +12,8 @@ export class ConversationComponent implements OnInit {
   friends: User[];
   friendId: any;
   friend: User;
+  price: number = 78818;
+  today: any = Date.now();
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.friendId = this.activatedRoute.snapshot.params['nick'];
