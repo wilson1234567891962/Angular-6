@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
     const user: User = {
       nick: 'Prueba de concepto',
       subnick: 'Alfa y beta',
-      age: 12
+      age: 12,
+      friend: false,
     };
 
     this.friends = [user];
