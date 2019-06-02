@@ -19,6 +19,8 @@ import {AuthenticationGuard} from './services/authentication.guard';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import { RequestComponent } from './modals/request/request.component';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent},
@@ -36,7 +38,8 @@ const appRouters: Routes = [
     ConversationComponent,
     ProfileComponent,
     MenuComponent,
-    SearchPipe
+    SearchPipe,
+    RequestComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,9 +53,11 @@ const appRouters: Routes = [
     AngularFireDatabaseModule,
     ImageCropperModule,
     NgbModule.forRoot(),
+    BootstrapModalModule.forRoot({container: document.body})
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent]
 })
 
 export class AppModule {
