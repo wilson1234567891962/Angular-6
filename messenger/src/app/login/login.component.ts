@@ -31,12 +31,6 @@ export class LoginComponent implements OnInit {
       }).catch((error) => {
       alert('Usuario o clave invalida');
     });
-    this.backend.get().subscribe((data: Ricky) => {
-      console.log(data);
-    }, (error) => {
-      console.log(error);
-      alert('Ocurrió un error');
-    });
   }
 
   register() {
