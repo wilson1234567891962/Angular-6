@@ -16,6 +16,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AuthenticationGuard} from './services/authentication.guard';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent},
@@ -36,6 +37,7 @@ const appRouters: Routes = [
     SearchPipe
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(appRouters),
     FormsModule,
