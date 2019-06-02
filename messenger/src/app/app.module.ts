@@ -18,6 +18,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AuthenticationGuard} from './services/authentication.guard';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent},
@@ -47,7 +48,8 @@ const appRouters: Routes = [
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
