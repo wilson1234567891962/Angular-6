@@ -6,8 +6,8 @@ import {HomeComponent} from './home/home.component';
 import {ConversationComponent} from './conversation/conversation.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RouterModule, Routes} from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
-import { SearchPipe } from './pipes/search.pipe';
+import {MenuComponent} from './menu/menu.component';
+import {SearchPipe} from './pipes/search.pipe';
 import {FormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
@@ -15,13 +15,14 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AuthenticationGuard} from './services/authentication.guard';
 
 const appRouters: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'conversation/:nick', component: ConversationComponent}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]},
+  {path: 'conversation/:nick', component: ConversationComponent, canActivate: [AuthenticationGuard]}
 ];
 
 @NgModule({
