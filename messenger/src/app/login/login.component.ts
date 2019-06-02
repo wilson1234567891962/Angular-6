@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {BackendService} from '../services/backend.service';
+import {Ricky} from '../interfaces/ricky';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   nick: string = null;
 
   constructor(private authenticationService: AuthenticationService,
-              private userService: UserService, private router: Router) {
+              private userService: UserService, private router: Router, private backend: BackendService) {
   }
 
   ngOnInit() {
@@ -29,7 +31,12 @@ export class LoginComponent implements OnInit {
       }).catch((error) => {
       alert('Usuario o clave invalida');
     });
-
+    this.backend.get().subscribe((data: Ricky) => {
+      console.log(data);
+    }, (error) => {
+      console.log(error);
+      alert('Ocurrió un error');
+    });
   }
 
   register() {
