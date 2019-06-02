@@ -12,8 +12,8 @@
           <div>
             <span>{{user.status}}</span>
             <br/>
-            <span *ngIf="user.state">{{user.state}}</span>
-            <span *ngIf="!user.state">Bienvenido a messenger</span> <br/>
+            <span *ngIf="!user.state">Bienvenido a messenger</span>
+            <span *ngIf="user.state">{{this.user.state}}</span> <br/>
             <a (click)="logout()">Logout</a>
           </div>
         </div>

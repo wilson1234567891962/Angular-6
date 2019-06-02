@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   friends: User[];
   user: User;
   query = '';
+  state = 'Bienvenido a messenger';
 
   constructor(private userService: UserService, private authenticationService: AuthenticationService,
               private router: Router) {

@@ -10,6 +10,8 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 export class ProfileComponent implements OnInit {
 
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
   user: User;
 
   constructor(private userService: UserService, private authenticationService: AuthenticationService) {
@@ -37,4 +39,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(image: string) {
+    this.croppedImage = image;
+  }
+  imageLoaded() {
+    // show cropper
+  }
+  loadImageFailed() {
+    // show message
+  }
 }
