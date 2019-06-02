@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
   login() {
     this.authenticationService.loginWithEmail(this.email, this.password)
       .then((data) => {
-         this.router.navigate( ['home']);
+        this.router.navigate(['home']);
       }).catch((error) => {
-      console.log(error);
+      alert('Usuario o clave invalida');
     });
 
   }
