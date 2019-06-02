@@ -9,16 +9,16 @@ import {UserService} from '../services/user.service';
   styleUrls: ['./conversation.component.css']
 })
 export class ConversationComponent implements OnInit {
-  friends: User[];
   friendId: any;
   friend: User;
-  price: number = 78818;
-  today: any = Date.now();
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.friendId = this.activatedRoute.snapshot.params['nick'];
-    this.friends = userService.getFriends();
-    this.friend = this.friends.find((record) => record.nick === this.friendId);
+    this.userService.getUserById(this.friendId).valueChanges().subscribe((data: User) => {
+      this.friend = data;
+    }, (error) => {
+
+    });
     console.log(this.friend);
   }
 

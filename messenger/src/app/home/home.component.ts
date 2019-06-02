@@ -9,9 +9,14 @@ import {UserService} from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
   friends: User[];
-  query: string= '';
+  query: string = '';
+
   constructor(private userService: UserService) {
-    this.friends = userService.getFriends();
+    userService.getUser().valueChanges().subscribe((data: User[]) => {
+      this.friends = data;
+    }, (eror) => {
+      console.log('error en la suscripcion');
+    });
   }
 
   ngOnInit() {
