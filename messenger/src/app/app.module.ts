@@ -16,7 +16,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 
-
 const appRouters: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
