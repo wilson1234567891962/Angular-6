@@ -13,40 +13,28 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
   friends: User[];
-  user: User;
-  query = '';
-  state = 'Bienvenido a messenger';
+  query: string = '';
   friendEmail: string = '';
+  user: User;
 
-  constructor(private userService: UserService, private authenticationService: AuthenticationService,
-              private router: Router, private modalService: NgbModal, private requestsService: RequestsService) {
-    userService.getUser().valueChanges().subscribe((data: User[]) => {
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private router: Router, private modalService: NgbModal, private requestsService: RequestsService) {
+    this.userService.getUser().valueChanges().subscribe((data: User[]) => {
       this.friends = data;
-    }, (eror) => {
-      console.log('error en la suscripcion');
-    });
-    this.authenticationService.getStatus().subscribe((status) => {
-      this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
-        this.user = data;
-      });
-    });
-    this.getUserById();
-  }
-
-  ngOnInit() {
-  }
-
-  getUserById() {
-    this.authenticationService.getStatus().subscribe((status) => {
-      this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
-        this.user = data;
-        console.log(this.user);
-      }, (error) => {
-        console.log(error);
-      });
     }, (error) => {
       console.log(error);
     });
+    this.authenticationService.getStatus().subscribe((status) => {
+      this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
+        this.user = data;
+        if (this.user.friends) {
+          this.user.friends = Object.values(this.user.friends);
+          console.log(this.user);
+        }
+      });
+    });
+  }
+
+  ngOnInit() {
   }
 
   logout() {

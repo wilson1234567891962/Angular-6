@@ -9,4 +9,5 @@ export interface User {
   state?: string;
   photo?: string;
   avatar?: string;
+  friends?: any;
 }
