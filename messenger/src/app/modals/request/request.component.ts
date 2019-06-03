@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DialogComponent, DialogService} from 'ng2-bootstrap-modal';
 import {UserService} from '../../services/user.service';
 import {RequestsService} from '../../services/requests.service';
+import {User} from '../../interfaces/user';
 
 export interface PromptModel {
   scope: any;
@@ -13,10 +14,11 @@ export interface PromptModel {
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent extends DialogComponent<PromptModel, any> implements PromptModel {
+export class RequestComponent extends DialogComponent<PromptModel, any> implements PromptModel, OnInit {
   scope: any;
   shouldAdd: string = 'yes';
   currentRequest: any;
+  friendUser: User;
 
   constructor(public dialogService: DialogService, private userService: UserService, private requestsService: RequestsService) {
     super(dialogService);
@@ -43,6 +45,16 @@ export class RequestComponent extends DialogComponent<PromptModel, any> implemen
         console.log(data);
       }).catch((error) => {
         console.log(error);
+      });
+    }
+  }
+
+  ngOnInit() {
+    if (this.currentRequest.sender) {
+      this.userService.getUserById(this.currentRequest.sender).valueChanges().subscribe((data: User) => {
+        this.friendUser = data;
+      }, (err) => {
+        console.log(err);
       });
     }
   }
